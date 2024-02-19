@@ -14,18 +14,19 @@ const bodyContainer =createElements('div',{'id':'main-container'});
 document.body.append(bodyContainer);
 const contentContainer =createElements('div',{'class':'container'});
 bodyContainer.append(contentContainer);
+const title =createElements('h1',{'id':'title','class':'text-center'},'All Countries Weather');
+contentContainer.append(title);
 const countryCardContainer =createElements('div',{'class':'row','id':'country-container'});
 contentContainer.append(countryCardContainer);
-const title =createElements('h1',{'id':'title','class':'text-center'},'weather website');
-contentContainer.append(title);
 
-const countryJsonData =fetch('https://restcountries.com/v3.1/all');
+
+const countryJsonData = fetch('https://restcountries.com/v3.1/all');
 countryJsonData.then((res)=>res.json())
 .then((data)=>displayContries(data));
 
 function displayContries(data){
     data.forEach((country)=>{
-      const countryCard =createElements('div',{'class':'col-sm-6 col-md-4 col-lg-4 col-xl-4  ','id': 'col-container'},countryDetails(country));
+      const countryCard =createElements('div',{'class':'col-sm-6 col-md-4 col-lg-4 col-xl-4 mt-3 ','id': 'col-container'},countryDetails(country));
       countryCardContainer.append(countryCard);
     })
 
@@ -34,12 +35,12 @@ function displayContries(data){
 function countryDetails(country){
   return `
     <div class="card h-100">
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-center">
             <h4 class="card-title p-2">${country.name.common}<h4>
         </div>
         <div class="card-body">
           <div class="img-con mb-4 h-20">
-            <img src="${country.flags.png}" class="card-img-top" atl="country-flag">
+            <img src="${country.flags.png}"  class="card-img-top country-image" atl="country-flag">
           </div>
           <div class="card-text text-center">
             <span class="card-text">Capital:${country.capital}</span><br>
